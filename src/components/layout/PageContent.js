@@ -1,6 +1,10 @@
+import DocumentationText from "../Docs/DocumentationText";
+import TableOfContents from "../Docs/TableOfContents";
+
 const PageContent =()=>{
 <div style={styles.PageContent}>
-    <h3>Hello</h3>
+    <TableOfContents />
+    <DocumentationText />
 </div>
 }
 
