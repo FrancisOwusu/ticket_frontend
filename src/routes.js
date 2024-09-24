@@ -1,15 +1,14 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route,Routes} from "react-router-dom";
 import PageContent from "./components/layout/PageContent";
-const Routes = () => {
-  {
-    /* <Switch> */
-  }
+// import Welcome from "./pages/Welcome";
+const AppRoutes = () => {
   <Routes>
-    <Route path="/" element={<PageContent />} />
+    {/* <Route path="/welcom" Component={<Welcome />} /> */}
+    <Route exact path="/" element={<PageContent />} />
     <Route path="/docs" element={<PageContent />} />
   </Routes>;
   // </Switch>
 };
 
-export default Routes;
+export default AppRoutes;
