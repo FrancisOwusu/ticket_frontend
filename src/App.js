@@ -20,24 +20,6 @@ function App() {
       </div>
     </Router>
   );
-
-  //   <Router>
-  //     <div className="App" style={styles.container}>
-  //       {/* <header className="App-header">
-  //         <Dashboard />
-  //       </header> */}
-  //       <NavigationHeader />
-  //       <div style={styles.main}>
-  //       <Sidebar />
-  //       <Routes>
-  //           <Route path="/" element={<PageContent />} />
-  //           <Route path="/docs" element={<PageContent />} />
-  //         </Routes>
-  //       </div>
-  //       <Footer />
-  //     </div>
-  //   </Router>
-  // );
 }
 // Main layout styles, easy to adjust in one place
 const styles = {
