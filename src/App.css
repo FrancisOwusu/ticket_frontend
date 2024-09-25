@@ -18,3 +18,82 @@ canvas {
   max-width: 600px;
   margin: 20px auto;
 }
+/* src/styles/Home.css */
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.home-header {
+  text-align: center;
+}
+
+.home-header h1 {
+  font-size: 3rem;
+  color: #333;
+}
+
+.home-header p {
+  font-size: 1.5rem;
+  color: #666;
+}
+
+.home-nav {
+  margin-top: 2rem;
+}
+
+.home-link {
+  display: inline-block;
+  margin: 0 1rem;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.home-link:hover {
+  background-color: #0056b3;
+}
+
+.home-footer {
+  position: absolute;
+  bottom: 10px;
+  text-align: center;
+  color: #888;
+}
+
+/* side bar css */
+.sidebar {
+  width: 100px;
+  height: 100vh;
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+.sidebar ul li a:hover {
+  text-decoration: underline;
+}
