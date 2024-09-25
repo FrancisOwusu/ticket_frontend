@@ -1,14 +1,22 @@
 import React from "react";
-import { Route,Routes} from "react-router-dom";
-import PageContent from "./components/layout/PageContent";
-// import Welcome from "./pages/Welcome";
+import { Routes, Route } from "react-router-dom";
+
+// Importing pages and components
+import Dashboard from "./pages/Dashboard";
+import Welcome from "./pages/Welcome";
+
+import NotFoundPage from "./pages/NotFoundPage";
 const AppRoutes = () => {
-  <Routes>
-    {/* <Route path="/welcom" Component={<Welcome />} /> */}
-    <Route exact path="/" element={<PageContent />} />
-    <Route path="/docs" element={<PageContent />} />
-  </Routes>;
-  // </Switch>
+  return (
+    <Routes>
+      {/* Public routes */}
+      <Route path="/" element={<Welcome />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+
+      {/* Catch-all for 404 */}
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  );
 };
 
 export default AppRoutes;

@@ -66,3 +66,34 @@ canvas {
   text-align: center;
   color: #888;
 }
+
+/* side bar css */
+.sidebar {
+  width: 100px;
+  height: 100vh;
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+.sidebar ul li a:hover {
+  text-decoration: underline;
+}
