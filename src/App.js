@@ -1,4 +1,3 @@
-
 import React from "react";
 import "./App.css";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -11,18 +10,16 @@ import AppRoutes from "./routes";
 function App() {
   return (
     <Router>
-    <div className="app">
-    {/* <NavigationHeader /> */}
-      <Sidebar />
-      <main style={{ marginLeft: '250px' }}>
-        <AppRoutes />  {/* Including the main routes */}
-      </main>
-      <Footer />
-    </div>
-  </Router>
-);
-
-
+      <div className="app">
+        {/* <NavigationHeader /> */}
+        <Sidebar />
+        <main style={{ marginLeft: "250px" }}>
+          <AppRoutes /> {/* Including the main routes */}
+        </main>
+        <Footer />
+      </div>
+    </Router>
+  );
 
   //   <Router>
   //     <div className="App" style={styles.container}>
@@ -45,13 +42,13 @@ function App() {
 // Main layout styles, easy to adjust in one place
 const styles = {
   container: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100vh',
+    display: "flex",
+    flexDirection: "column",
+    height: "100vh",
   },
   main: {
-    display: 'flex',
-    flex: 1,  // Ensures content takes full height
+    display: "flex",
+    flex: 1, // Ensures content takes full height
   },
 };
 export default App;
