@@ -1,37 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { loginService } from "../services/authService";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { login } = useContext(AuthContext);
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     // Prevent the browser from reloading the page
     e.preventDefault();
-    alert("Submitting!");
-
-    // Read the form data
-    const form = e.target;
-    const formData = new FormData(form);
-
-    // You can pass formData as a fetch body directly:
-    fetch("/some-api", { method: form.method, body: formData });
-
-    // Or you can work with it as a plain object:
-    const formJson = Object.fromEntries(formData.entries());
-    console.log(formJson);
+    try {
+      const { token } = await loginService(email, password);
+      login(token);
+    } catch (err) {
+      setError("Invalid credentials,Please try again.");
+    }
   }
-  
-  
+
   function handleReset() {
     setPassword("");
     setEmail("");
   }
-  function handleSubmit(e) {}
+
   return (
     <div className="container" style={{ marginTop: "10vh" }}>
-     
-
       <form method="post" onSubmit={handleLogin}>
         <h2>Login to your account</h2>
         <p>Welcome back!</p>
@@ -61,7 +55,9 @@ const Login = () => {
             id="password"
           />
         </div>
-        <button type="reset" className="btn btn-danger">Reset</button>
+        <button type="reset" className="btn btn-danger">
+          Reset
+        </button>
         <button type="submit" className="btn btn-primary">
           LOG IN
         </button>
