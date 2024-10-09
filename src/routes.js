@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,Navigate } from "react-router-dom";
 
 // Importing pages and components
 import Dashboard from "./pages/Dashboard";
@@ -8,16 +8,42 @@ import Login from "./pages/Login";
 
 import NotFoundPage from "./pages/NotFoundPage";
 import Contact from "./pages/Contact";
+import ProtectedRoute from "./services/ProtectedRoute";
 const AppRoutes = () => {
   return (
     <Routes>
       {/* Public routes */}
-      <Route path="/" element={<Welcome />} errorElement={<NotFoundPage />} />
+      {/* <Route path="/" element={<Welcome />} errorElement={<NotFoundPage />} /> */}
       <Route path="/login" element={<Login />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+             <Welcome />
+            </ProtectedRoute>
+          }
+        />
+      <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+             <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <ProtectedRoute>
+             <Contact />
+            </ProtectedRoute>
+          }
+        />
+      {/* <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      <Route path="/contact" element={<Contact />} /> */}
       {/* Catch-all for 404 */}
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<Navigate to="/login" replace />} />
+      {/* <Route path="*" element={<NotFoundPage />} /> */}
     </Routes>
   );
 };

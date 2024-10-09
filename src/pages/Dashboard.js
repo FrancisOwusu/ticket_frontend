@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Bar, Pie } from "react-chartjs-2";
+import { useNavigate } from "react-router-dom";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,6 +12,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { AuthContext } from "../context/AuthContext";
 
 ChartJS.register(
   CategoryScale,
@@ -24,7 +26,8 @@ ChartJS.register(
 
 const Dashboard = () => {
   const [data, setData] = useState(null);
-
+  const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -114,6 +117,10 @@ const Dashboard = () => {
     ],
   };
 
+  const handleLogout = () => {
+    logout(); // Call the logout function to clear the token
+    navigate("/login"); // Redirect to the login page
+  };
   return (
     <div>
       <h1>Ticket Dashboard</h1>
@@ -123,6 +130,7 @@ const Dashboard = () => {
       <div>
         <Pie data={pieData} />
       </div>
+      <button onClick={handleLogout}>Logout</button> {/* Logout button */}
     </div>
   );
 };
