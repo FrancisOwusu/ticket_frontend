@@ -6,9 +6,11 @@ import Sidebar from "./components/layout/Sidebar";
 import NavigationHeader from "./components/layout/NavigationHeader";
 import Footer from "./components/layout/Footer";
 import AppRoutes from "./routes";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
+    <AuthProvider>
     <Router>
       <div className="app">
         {/* <NavigationHeader /> */}
@@ -19,25 +21,8 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </AuthProvider>
   );
-
-  //   <Router>
-  //     <div className="App" style={styles.container}>
-  //       {/* <header className="App-header">
-  //         <Dashboard />
-  //       </header> */}
-  //       <NavigationHeader />
-  //       <div style={styles.main}>
-  //       <Sidebar />
-  //       <Routes>
-  //           <Route path="/" element={<PageContent />} />
-  //           <Route path="/docs" element={<PageContent />} />
-  //         </Routes>
-  //       </div>
-  //       <Footer />
-  //     </div>
-  //   </Router>
-  // );
 }
 // Main layout styles, easy to adjust in one place
 const styles = {
