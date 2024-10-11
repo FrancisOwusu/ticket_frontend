@@ -31,7 +31,10 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosInstance("http://localhost:4000/dashboard","GET")
+        const response = await axiosInstance(
+          "http://localhost:4000/dashboard",
+          "GET"
+        );
         // await axios.get("http://localhost:4000/dashboard");
         setData(response.data);
       } catch (error) {
