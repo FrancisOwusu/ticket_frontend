@@ -13,7 +13,7 @@ import {
   Legend,
 } from "chart.js";
 import { AuthContext } from "../context/AuthContext";
-
+import axiosInstance from "../utils/axiosInstance";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -31,7 +31,8 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/dashboard");
+        const response = await axiosInstance("http://localhost:4000/dashboard","GET")
+        // await axios.get("http://localhost:4000/dashboard");
         setData(response.data);
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
