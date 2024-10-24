@@ -1,17 +1,29 @@
 import React, { useEffect, useState } from "react";
 import UserService from "../../services/userService";
 import UserForm from "./userForm";
+import { useNavigate } from "react-router-dom";
 const UserList = () => {
   const [users, setUsers] = useState([]);
-  const [editingUser, setEditingUser] = useState(null);
-
+  const [editingUser, setEditingUser] = useState({});
+  const navigate = useNavigate();
   const fetchUsers = async () => {
-    const response = await UserService.getUsers();
-    setUsers(response.data);
+    try {
+      const response = await UserService.getUsers();
+      setUsers(response.data);
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        // Navigate to the 401 Unauthorized page
+        navigate("/unauthorized");
+      } else {
+        console.log("Error:", error.message);
+      }
+    }
   };
 
   const handleEdit = (user) => {
+    console.log(user);
     setEditingUser(user);
+    console.log(editingUser);
   };
 
   const handleDelete = async (userId) => {

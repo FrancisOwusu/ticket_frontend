@@ -10,6 +10,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import Contact from "./pages/Contact";
 import ProtectedRoute from "./services/ProtectedRoute";
 import Users from "./pages/Users";
+import Error401 from "./error/401";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -54,6 +55,7 @@ const AppRoutes = () => {
       <Route path="/contact" element={<Contact />} /> */}
       {/* Catch-all for 404 */}
       <Route path="*" element={<Navigate to="/login" replace />} />
+      <Route path="/unauthorized" element={<Error401 />} />
       {/* <Route path="*" element={<NotFoundPage />} /> */}
     </Routes>
   );
