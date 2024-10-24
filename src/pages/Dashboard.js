@@ -35,10 +35,15 @@ const Dashboard = () => {
           "http://localhost:4000/dashboard",
           "GET"
         );
-        // await axios.get("http://localhost:4000/dashboard");
+  
         setData(response.data);
-      } catch (error) {
-        console.error("Error fetching dashboard data:", error);
+      }  catch (error) {
+        if (error.response && error.response.status === 401) {
+          // Navigate to the 401 Unauthorized page
+          navigate("/unauthorized");
+        } else {
+          console.log("Error:", error.message);
+        }
       }
     };
 
