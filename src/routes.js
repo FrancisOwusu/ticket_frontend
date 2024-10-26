@@ -6,11 +6,13 @@ import Dashboard from "./pages/Dashboard";
 import Welcome from "./pages/Welcome";
 import Login from "./pages/Login";
 
-import NotFoundPage from "./pages/NotFoundPage";
+// import NotFoundPage from "./pages/NotFoundPage";
 import Contact from "./pages/Contact";
 import ProtectedRoute from "./services/ProtectedRoute";
-import Users from "./pages/Users";
+// import Users from "./pages/Users";
 import Error401 from "./error/401";
+// import HistoryRoutes from "./routes/users";
+import UserRoutes from "./routes/users";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -43,17 +45,19 @@ const AppRoutes = () => {
       />
 
       <Route
-        path="/users"
-        children
+        path="/users/*"
+        // children
         element={
           <ProtectedRoute>
-            <Users />
+            {/* <Users /> */}
+            <UserRoutes />
           </ProtectedRoute>
         }
       />
       {/* <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/contact" element={<Contact />} /> */}
       {/* Catch-all for 404 */}
+      {/* <Route path="/history" element={<HistoryRoutes />} /> */}
       <Route path="*" element={<Navigate to="/login" replace />} />
       <Route path="/unauthorized" element={<Error401 />} />
       {/* <Route path="*" element={<NotFoundPage />} /> */}

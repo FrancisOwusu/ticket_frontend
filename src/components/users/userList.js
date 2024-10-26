@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import UserService from "../../services/userService";
-import UserForm from "./userForm";
-import { useNavigate } from "react-router-dom";
+// import UserForm from "./userForm";
+import { Link, useNavigate } from "react-router-dom";
 const UserList = () => {
   const [users, setUsers] = useState([]);
-  const [editingUser, setEditingUser] = useState({});
+  // const [editingUser, setEditingUser] = useState({});
   const navigate = useNavigate();
   const fetchUsers = async () => {
     try {
@@ -20,21 +20,21 @@ const UserList = () => {
     }
   };
 
-  const handleEdit = (user) => {
-    console.log(user);
-    setEditingUser(user);
-    console.log(editingUser);
-  };
+  // const handleEdit = (user) => {
+  //   console.log(user);
+  //   setEditingUser(user);
+  //   console.log(editingUser);
+  // };
 
-  const handleDelete = async (userId) => {
-    await UserService.deleteUser(userId);
-    fetchUsers(); // Refresh the list after deletion
-  };
+  // const handleDelete = async (userId) => {
+  //   await UserService.deleteUser(userId);
+  //   fetchUsers(); // Refresh the list after deletion
+  // };
 
-  const handleSave = () => {
-    setEditingUser(null);
-    fetchUsers(); // Refresh the list after save
-  };
+  // const handleSave = () => {
+  //   // setEditingUser(null);
+  //   fetchUsers(); // Refresh the list after save
+  // };
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -42,22 +42,47 @@ const UserList = () => {
   return (
     <div>
       <h2>User Management</h2>
-      <UserForm
+      {/* <UserForm
         user={editingUser}
         onSave={handleSave}
         isEditing={!!editingUser}
-      />
+      /> */}
 
       <h3>User List</h3>
-      <ul>
+      {/* <ul>
         {users.map((user, index) => (
           <li key={index}>
             {user.first_name} {user.last_name} ({user.email}) - {user.status}
+            
             <button onClick={() => handleEdit(user)}>Edit</button>
             <button onClick={() => handleDelete(user.user_id)}>Delete</button>
           </li>
         ))}
+      </ul> */}
+
+
+      <h2>Users List</h2>
+      <Link to="/users/create"><button>Create New User</button></Link>
+
+      <ul>
+        {users.map((user, index) => (
+          <li key={index}>
+            {user.first_name} {user.last_name} ({user.email}) - {user.status}
+            
+            {/* Link to Edit page with the user ID */}
+           
+            <Link to={`/users/edit/${user.id}`}>
+              <button>Edit</button>
+            </Link>
+            
+            {/* Link to Delete page with the user ID */}
+            <Link to={`/users/delete/${user.id}`}>
+              <button>Delete</button>
+            </Link>
+          </li>
+        ))}
       </ul>
+
     </div>
   );
 };
