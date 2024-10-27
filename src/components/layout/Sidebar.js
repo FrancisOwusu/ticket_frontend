@@ -20,13 +20,13 @@ const Sidebar = () => {
   );
 };
 
-const styles = {
-  sidebar: {
-    // width: '250px',
-    backgroundColor: '#e9ecef', // Light grey background
-    padding: '20px',
-    // height: '100vh',
-  },
-};
+// const styles = {
+//   sidebar: {
+//     // width: '250px',
+//     backgroundColor: '#e9ecef', // Light grey background
+//     padding: '20px',
+//     // height: '100vh',
+//   },
+// };
 
 export default Sidebar;

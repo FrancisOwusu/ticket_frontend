@@ -16,6 +16,7 @@ import UserRoutes from "./routes/users";
 const AppRoutes = () => {
   return (
     <Routes>
+  
       {/* Public routes */}
       {/* <Route path="/" element={<Welcome />} errorElement={<NotFoundPage />} /> */}
       <Route path="/login" element={<Login />} />

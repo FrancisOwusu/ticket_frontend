@@ -17,10 +17,10 @@ function UserRoutes() {
   return (
     <Routes>
       <Route path="/" element={<UserPage />}>
-        <Route path="create" element={<UserCreate />} />
-        <Route path="edit/:id" element={<UserUpdate />} />
-        <Route path="update/:id" element={<h3>Update History</h3>} />
-        <Route path="delete/:id" element={<UserDelete />} />
+        <Route path="/create" element={<UserCreate />} />
+        <Route path="/edit/:id" element={<UserUpdate />} />
+        <Route path="/update/:id" element={<h3>Update History</h3>} />
+        <Route path="/delete/:id" element={<UserDelete />} />
       </Route>
     </Routes>
   );
