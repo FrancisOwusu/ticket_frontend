@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UserService from "../../services/userService";
-
+import { AuthContext } from "../../context/AuthContext";
+import { useNotification } from "../../context/SAlertNotification";
 function CreateUser() {
-    const [status, setStatus] = useState('typing');
+  const {showAlert} = useNotification();
+  const [status, setStatus] = useState("typing");
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -11,6 +13,7 @@ function CreateUser() {
     confirmPassword: "",
     email: "",
     status: "Active",
+    user_id: localStorage.getItem("userId"),
   });
   const navigate = useNavigate();
 
@@ -20,19 +23,19 @@ function CreateUser() {
   };
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
     try {
-      console.log(formData);
-      setStatus('sending')
-      const response = UserService.createUser(formData);
+      setStatus("sending");
+      const response = await UserService.createUser(formData);
 
-      //   await fetch("/api/users", {
-      //     method: "POST",
-      //     headers: { "Content-Type": "application/json" },
-      //     body: JSON.stringify(formData),
-      //   });
-      console.log(response);
-      if (response.ok) {
+      if ((response.status = 201)) {
+ 
+        showAlert({
+          title: "Success!",
+          message: response.data.message,
+          type: "success",
+        });
         navigate("/users");
       } else {
         console.error("Failed to create user.");
@@ -41,11 +44,11 @@ function CreateUser() {
       console.error("Error:", error);
     }
   };
-const isSending = status ==='sending';
-const isSent=status==='sent'
-if(isSent){
-    return <h1>Thanks for feedback</h1>
-}
+  const isSending = status === "sending";
+  const isSent = status === "sent";
+  if (isSent) {
+    return <h1>Thanks for feedback</h1>;
+  }
   return (
     <div>
       <h2>Create New User</h2>
@@ -97,7 +100,9 @@ if(isSent){
           <option value="Active">Active</option>
           <option value="Inactive">Inactive</option>
         </select>
-        <button disabled={isSending} type="submit">Create User</button>
+        <button disabled={isSending} type="submit">
+          Create User
+        </button>
       </form>
     </div>
   );

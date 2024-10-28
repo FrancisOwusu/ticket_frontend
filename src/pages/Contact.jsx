@@ -41,6 +41,7 @@ export default function Contact() {
               href={`https://twitter.com/${contact.twitter}`}
             >
               {contact.twitter}
+              User Id={localStorage.getItem("userId")}
             </a>
           </p>
         )}

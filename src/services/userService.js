@@ -5,9 +5,10 @@ const USERS_URL = `${BASE_URL}/users`; // Base API URL for users
 
 export default class UserService {
   // Create a new user (POST request)
-  static createUser(userData) {
-    return axiosInstance(`${USERS_URL}`, "POST", userData);
+  static async createUser(userData) {
+   return await axiosInstance(`${USERS_URL}`, "POST", userData);
     // return axios.post(`${API_URL}/create`, userData);
+    // return response.data;
   }
 
   // Get all users (GET request)
