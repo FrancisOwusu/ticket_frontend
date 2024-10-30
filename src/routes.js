@@ -13,6 +13,10 @@ import ProtectedRoute from "./services/ProtectedRoute";
 import Error401 from "./error/401";
 // import HistoryRoutes from "./routes/users";
 import UserRoutes from "./routes/users";
+import UserCreate from "./pages/user/UserCreate";
+// import UserUpdate from "../pages/user/UserUpdate";
+import UserEdit from "./pages/user/UserEdit";
+import UserDelete from "./pages/user/UserDelete";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -44,17 +48,27 @@ const AppRoutes = () => {
           </ProtectedRoute>
         }
       />
+{/* users route */}
 
       <Route
-        path="/users/*"
+        path="/users"
         // children
         element={
-          <ProtectedRoute>
-            {/* <Users /> */}
+         
+
             <UserRoutes />
-          </ProtectedRoute>
+          
         }
       />
+
+<Route path="users/create" element={
+  <ProtectedRoute><UserCreate /></ProtectedRoute>} />
+        <Route path="users/edit/:id" element={<ProtectedRoute><UserEdit /></ProtectedRoute>} />
+        <Route path="users/update/:id" element={<h3>Update History</h3>} />
+        <Route path="users/delete/:id" element={<ProtectedRoute><UserDelete /></ProtectedRoute>} />
+      
+
+
       {/* <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/contact" element={<Contact />} /> */}
       {/* Catch-all for 404 */}
