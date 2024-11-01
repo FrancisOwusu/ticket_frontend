@@ -62,35 +62,6 @@ const UserList = () => {
 
   return (
     <DataTable columns={columns} data={users} />
-    
-
-    // <div>
-    //   <h2>User Management</h2>
-    
-
-    //   <h2>Users List</h2>
-    //   <Link to="/users/create"><button>Create New User</button></Link>
-
-    //   <ul>
-    //     {users.map((user, index) => (
-    //       <li key={index}>
-    //         {user.first_name} {user.last_name} ({user.email}) - {user.status}
-            
-    //         {/* Link to Edit page with the user ID */}
-           
-    //         <Link to={`/users/edit/${user.id}`}>
-    //           <button>Edit</button>
-    //         </Link>
-            
-    //         {/* Link to Delete page with the user ID */}
-    //         <Link to={`/users/delete/${user.id}`}>
-    //           <button>Delete</button>
-    //         </Link>
-    //       </li>
-    //     ))}
-    //   </ul>
-
-    // </div>
   );
 };
 

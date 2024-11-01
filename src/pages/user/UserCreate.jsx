@@ -50,7 +50,7 @@ function CreateUser() {
   return (
     <div>
       <h2>Create New User</h2>
-      <a><Link to="users">Users</Link></a>
+      <Link to="users">Users</Link>
       <div className="container">
         <form onSubmit={handleSubmit}>
           <input

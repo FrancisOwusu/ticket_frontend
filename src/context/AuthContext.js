@@ -24,15 +24,15 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState(null);
-  
+
   // Check if a token exists on initial mount
   useEffect(() => {
     const token = getToken();
 
     if (token) {
-      const decodeToken=  jwtDecode(token);
+      const decodeToken = jwtDecode(token);
       localStorage.setItem("userId", decodeToken.userId);
-      setUserId(getUserIdFromToken(token));
+      setUserId(decodeToken.userId);
       setIsAuthenticated(true);
     }
     setLoading(false); // Set loading to false after checking token
@@ -43,11 +43,12 @@ export const AuthProvider = ({ children }) => {
     saveToken(token);
 
     setIsAuthenticated(true);
-  }, []); 
+  }, []);
 
   // Logout function using useCallback to memoize the function
   const logout = useCallback(() => {
     removeToken();
+    localStorage.removeItem("userId");
     setIsAuthenticated(false);
   }, []);
 
