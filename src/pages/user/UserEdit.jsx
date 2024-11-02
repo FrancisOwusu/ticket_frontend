@@ -27,7 +27,7 @@ const EditUser = () => {
       try {
         const response = await UserService.getUserById(userId);
         if(response.status!=200) throw new Error("Error fetching user details");
-       formData(response.data.data);
+       setFormData(response.data.data);
         setUser(response.data.data); // Set user data in state
       } catch (err) {
         setError(err.message); // Handle any errors
@@ -126,7 +126,7 @@ const EditUser = () => {
             <option value="Inactive">Inactive</option>
           </select>
           <button disabled={isSending} type="submit">
-            Create User
+            Update User
           </button>
         </form>
       </div>
