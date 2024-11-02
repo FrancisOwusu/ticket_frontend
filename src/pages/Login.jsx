@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { loginService } from "../services/authService";
 import { Navigate, redirect, useNavigate } from "react-router-dom";
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -11,13 +10,6 @@ const Login = () => {
 
   const { login, isAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate(); // Hook for programmatic navigation
-  // if (!isAuthenticated) {
-  //   useEffect(()=>{
-
-  //   })
-  //   navigate("/login");
-  // }
-  // Simple validation checks
   const validateForm = () => {
     if (!email) {
       setFormError("Email is required");

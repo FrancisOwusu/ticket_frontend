@@ -13,19 +13,20 @@ const Sidebar = () => {
           <li><Link to="users">Users</Link></li>
           <li><Link to="login">Login</Link></li>
           <li><Link to="dashboard">Dashboard</Link></li>
+          <li><Link to="history">History</Link></li>
         </ul>
       </nav>
     </aside>
   );
 };
 
-const styles = {
-  sidebar: {
-    // width: '250px',
-    backgroundColor: '#e9ecef', // Light grey background
-    padding: '20px',
-    // height: '100vh',
-  },
-};
+// const styles = {
+//   sidebar: {
+//     // width: '250px',
+//     backgroundColor: '#e9ecef', // Light grey background
+//     padding: '20px',
+//     // height: '100vh',
+//   },
+// };
 
 export default Sidebar;

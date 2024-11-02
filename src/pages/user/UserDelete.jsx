@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import UserService from './UserService';
+import UserService from '../../services/userService';
 
 const UserDelete = () => {
   const { userId } = useParams();
