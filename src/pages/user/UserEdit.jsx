@@ -18,7 +18,7 @@ const EditUser = () => {
     password: "",
     confirmPassword: "",
     email: "",
-    status: "Active",
+    status: "",
     user_id: "",
   });
   useEffect(() => {
@@ -53,7 +53,7 @@ const EditUser = () => {
     e.preventDefault();
     try {
       setStatus("sending");
-      const response = await UserService.createUser(formData);
+      const response = await UserService.EditUser(userId,formData);
 
       if ((response.status = 201)) {
         showAlert({

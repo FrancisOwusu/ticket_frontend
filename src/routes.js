@@ -21,20 +21,20 @@ import Users from "./pages/Users";
 const AppRoutes = () => {
   return (
     <Routes>
-    <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<Login />} />
       <Route path="*" element={<Navigate to="/login" replace />} />
       <Route path="/unauthorized" element={<Error401 />} />
 
-      {/* <Route element={<ProtectedRoute />}> */}
+      <Route element={<ProtectedRoute />} />
       {/* <Route path="/" element={<Welcome />} /> */}
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/users" element={<Users />}/>
-          <Route path="users/create" element={<UserCreate />} />
-          <Route path="users/edit/:id" element={<UserEdit />} />
-          <Route path="users/update/:id" element={<h3>Update History</h3>} />
-          <Route path="users/delete/:id" element={<UserDelete />} />
-      
+      <Route path="/users" element={<Users />} />
+      <Route path="users/create" element={<UserCreate />} />
+      <Route path="users/edit/:id" element={<UserEdit />} />
+      <Route path="users/update/:id" element={<h3>Update History</h3>} />
+      <Route path="users/delete/:id" element={<UserDelete />} />
+      <Route />
     </Routes>
   );
 };
