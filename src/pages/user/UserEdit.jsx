@@ -1,10 +1,11 @@
 import { useContext, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import UserService from "../../services/userService";
 import { AuthContext } from "../../context/AuthContext";
 
 import { useNotification } from "../../context/SAlertNotification";
 const EditUser = () => {
+  const fetchId = useParams();
   const { showAlert } = useNotification();
   const [status, setStatus] = useState("typing");
 
@@ -18,19 +19,22 @@ const EditUser = () => {
     password: "",
     confirmPassword: "",
     email: "",
-    status: "Active",
+    status: "",
     user_id: "",
   });
   useEffect(() => {
     // Define the fetchUser function to get user details
     const fetchUser = async () => {
       try {
-        const response = await UserService.getUserById(userId);
-        if(response.status!=200) throw new Error("Error fetching user details");
-       setFormData(response.data.data);
+        const response = await UserService.getUserById(fetchId.id);
+        if (response.status != 200)
+          throw new Error("Error fetching user details");
+        console.log(response.data.data);
+        setFormData(response.data.data);
         setUser(response.data.data); // Set user data in state
       } catch (err) {
-        setError(err.message); // Handle any errors
+        console.log(err.message);
+        // setError(err.message); // Handle any errors
       } finally {
         setLoading(false); // Set loading to false when done
       }
@@ -39,43 +43,58 @@ const EditUser = () => {
     fetchUser(); // Call the fetchUser function on component mount
   }, []);
 
-//   if (loading) return <div>Loading...</div>;
-//   if (error) return <div>Error: {error}</div>;
+  //   if (loading) return <div>Loading...</div>;
+  //   if (error) return <div>Error: {error}</div>;
 
   //   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    console.log(name, value);
+
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+    console.log(formData);
     try {
       setStatus("sending");
-      const response = await UserService.createUser(formData);
-
+      const response = await UserService.updateUser(fetchId.id, formData);
+      console.log(response.data);
       if ((response.status = 201)) {
         showAlert({
           title: "Success!",
           message: response.data.message,
           type: "success",
         });
+        setFormData({
+          first_name: "",
+          last_name: "",
+          password: "",
+          confirmPassword: "",
+          email: "",
+          status: "",
+          user_id: "",
+        });
         // navigate("/users");
       } else {
         console.error("Failed to create user.");
       }
     } catch (error) {
-      console.error("Error:", error);
+      setError(error.message);
     }
   };
   const isSending = status === "sending";
   return (
     <div>
       <h2>Create New User</h2>
-      
-        <Link to="users">Users</Link>
-      
+
+      <Link to="users">Users</Link>
+      <div>
+        {error && <p>Error: {error}</p>}
+        <p>User Form</p>
+      </div>
       <div className="container">
         <form onSubmit={handleUpdate}>
           <input
@@ -83,7 +102,8 @@ const EditUser = () => {
             name="first_name"
             disabled={isSending}
             placeholder="First Name"
-            value={formData.first_name}
+            value={formData.first_name || ""}
+            autoComplete="on"
             onChange={handleChange}
             required
           />
@@ -92,7 +112,8 @@ const EditUser = () => {
             name="last_name"
             disabled={isSending}
             placeholder="Last Name"
-            value={formData.last_name}
+            value={formData.last_name || ""}
+            autoComplete="on"
             onChange={handleChange}
             required
           />
@@ -101,7 +122,8 @@ const EditUser = () => {
             name="email"
             disabled={isSending}
             placeholder="Email"
-            value={formData.email}
+            value={formData.email || ""}
+            autoComplete="on"
             onChange={handleChange}
             required
           />
@@ -110,7 +132,8 @@ const EditUser = () => {
             name="password"
             disabled={isSending}
             placeholder="Password"
-            value={formData.password}
+            value={formData.password || ""}
+            autoComplete="current-password"
             onChange={handleChange}
           />
           <input
@@ -118,10 +141,17 @@ const EditUser = () => {
             disabled={isSending}
             name="confirmPassword"
             placeholder="Confirm Password"
-            value={formData.confirmPassword}
+            value={formData.confirmPassword || ""}
+            autoComplete="new-password"
             onChange={handleChange}
           />
-          <select name="status" value={formData.status} onChange={handleChange}>
+          <select
+            name="status"
+            defaultChecked
+            checked
+            value={formData.status || ""}
+            onChange={handleChange}
+          >
             <option value="Active">Active</option>
             <option value="Inactive">Inactive</option>
           </select>

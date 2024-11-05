@@ -12,7 +12,7 @@ const ProtectedLayout = () => {
   // Outlet renders child routes if authenticated
   return (
     <div>
-      <h2>Protected Layout</h2>
+      {/* <h2>Protected Layout</h2> */}
       <Outlet /> {/* This will render the child routes */}
     </div>
   );

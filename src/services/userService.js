@@ -26,13 +26,13 @@ export default class UserService {
   }
 
   // Update a user by ID (PUT request)
-  static updateUser(userId, updatedData) {
-    return axios.put(`${USERS_URL}/update/${userId}`, updatedData);
+  static updateUser(id, updatedData) {
+    return axiosInstance(`${USERS_URL}/${id}`,'PUT', updatedData);
   }
 
   // Delete a user by ID (DELETE request)
-  static deleteUser(userId) {
-    return axios.delete(`${USERS_URL}/delete/${userId}`);
+  static deleteUser(id) {
+    return axiosInstance(`${USERS_URL}/${id}`,'DELETE');
   }
 }
 
