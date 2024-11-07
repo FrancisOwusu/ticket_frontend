@@ -6,14 +6,12 @@ const Sidebar = () => {
     <aside className="sidebar">
       <nav>
         <ul>
-          <li><a href="#section1">Section 1</a></li>
-          <li><a href="#section2">Section 2</a></li>
-          <li><a href="#section3">Section 3</a></li>
-          <Link to="Contact">Contact Us</Link>
+      
+          <li><Link to="Contact">Contact Us</Link></li>
           <li><Link to="users">Users</Link></li>
           <li><Link to="login">Login</Link></li>
           <li><Link to="dashboard">Dashboard</Link></li>
-          <li><Link to="history">History</Link></li>
+     
         </ul>
       </nav>
     </aside>
