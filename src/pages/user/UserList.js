@@ -24,12 +24,6 @@ const UserList = () => {
     }
   };
 
-  // const handleEdit = (user) => {
-  //   console.log(user);
-  //   setEditingUser(user);
-  //   console.log(editingUser);
-  // };
-
   const handleDelete = async (id) => {
     try {
       const response = await UserService.deleteUser(id);
@@ -40,11 +34,6 @@ const UserList = () => {
 
     //fetchUsers(); // Refresh the list after deletion
   };
-
-  // const handleSave = () => {
-  //   // setEditingUser(null);
-  //   fetchUsers(); // Refresh the list after save
-  // };
   useEffect(() => {
     fetchUsers();
   }, []);

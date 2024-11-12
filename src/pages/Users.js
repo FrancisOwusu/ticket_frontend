@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import UserList from "../components/users/userList";
+import UserList from "../pages/user/UserList";
 const Users = () => {
   return (
     <>
