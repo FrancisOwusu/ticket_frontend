@@ -18,6 +18,9 @@ import UserCreate from "./pages/user/UserCreate";
 import UserEdit from "./pages/user/UserEdit";
 import UserDelete from "./pages/user/UserDelete";
 import Users from "./pages/Users";
+import Category from "./pages/Category";
+
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -32,8 +35,15 @@ const AppRoutes = () => {
       <Route path="/users" element={<Users />} />
       <Route path="users/create" element={<UserCreate />} />
       <Route path="users/edit/:id" element={<UserEdit />} />
-      <Route path="users/update/:id" element={<h3>Update History</h3>} />
+      {/* <Route path="users/update/:id" element={<h3>Update History</h3>} /> */}
       <Route path="users/delete/:id" element={<UserDelete />} />
+
+
+      <Route path="/categories" element={<Category />} />
+      <Route path="categories/create" element={<UserCreate />} />
+      <Route path="categories/edit/:id" element={<UserEdit />} />
+      {/* <Route path="users/update/:id" element={<h3>Update History</h3>} /> */}
+      <Route path="categories/delete/:id" element={<UserDelete />} />
       <Route />
     </Routes>
   );
